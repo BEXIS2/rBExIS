@@ -3,6 +3,12 @@
 A package to exchange data and metadata in between R statistics and instances
 of the BExIS II data managemet workbench.
 
+## Requirements
+
+- R (e.g. https://cran.r-project.org/bin/windows/base/ for Windows, otherwise start [here](https://cran.r-project.org/bin/))
+- RStudio (https://www.rstudio.com/products/rstudio/download/#download)
+- Rtools (e.g. https://cran.r-project.org/bin/windows/Rtools/ for Windows, , otherwise start [here](https://cran.r-project.org/bin/))
+
 ## Install
 
 ```
