@@ -17,7 +17,7 @@
 
 bexis.get.metadata <- function() 
 {
-  api_url <- get_api_url("metadata/")
+  api_url <- get_api_url("/metadata")
   
   if(exists_option("authorization_bearer"))
   {

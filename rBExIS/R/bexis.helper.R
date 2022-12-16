@@ -11,9 +11,9 @@ get_api_url <- function(suffix = '')
 
   if(is.na(suffix) || suffix == '')
   {
-    return(paste0(bexis.options("base_url"), "api/"))
+    return(paste0(bexis.options("base_url"), "/api"))
   } else {
-    return(paste0(bexis.options("base_url"), "api/", suffix))
+    return(paste0(bexis.options("base_url"), "/api", suffix))
   }
 }
 
