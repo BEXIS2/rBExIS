@@ -31,9 +31,12 @@ bexis.get.datasets <- function()
   names(response)
   status_code(response)
   
-  data <- content(response)
-  
-  print(data)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
 }
 
 
