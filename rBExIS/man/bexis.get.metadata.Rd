@@ -4,9 +4,13 @@
 \alias{bexis.get.metadata}
 \title{Getting all metadata objects from BExIS}
 \usage{
-bexis.get.metadata()
+bexis.get.metadata(id)
+
+bexis.get.metadata(id)
 }
 \arguments{
+\item{id}{Is the ID of the dataset you want to access}
+
 \item{base_url}{Is the URL of the BExIS instance (e.g. www.mybexis.de)
 If the base url is already provided by the function bexis.options()
  then this value will be taken and you do not need to provide it again.}
@@ -17,12 +21,21 @@ If the base url is already provided by the function bexis.options()
 The function returns a list of metadata objects.
 An error is provided in case the data is not found or if you don't
 have the rights to access it.
+
+The function returns a metadata of the requested dataset.
+An error is provided in case the data is not found or if you don't
+have the rights to access it.
 }
 \description{
+The function provides access to data that on a BExIS II instance.
+
 The function provides access to data that on a BExIS II instance.
 }
 \examples{
 \dontrun{
         bexis.get.metadatas()
+      }
+\dontrun{
+        bexis.get.metadata_by(id=8)
       }
 }
