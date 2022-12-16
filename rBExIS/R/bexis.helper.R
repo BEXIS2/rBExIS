@@ -9,7 +9,7 @@ get_api_url <- function(suffix = '')
     stop("Please set \"base_url\" within the options by bexis.options(\"base_url\" = \"YOUR.BASE.URL\").")
   } 
 
-  if(is.na(suffix)) || suffix == '')
+  if(is.na(suffix) || suffix == '')
   {
     return(paste0(bexis.options("base_url"), "api/"))
   } else {
