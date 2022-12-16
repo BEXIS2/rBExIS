@@ -19,7 +19,7 @@ get_api_url <- function(suffix = '')
 
 exists_option <- function(key) {
 	
-  if(!(exists(bexis.options(key))))
+  if(!(exists(key, bexis.options())))
     return(FALSE)
 
   if(is.na(bexis.options(key)) )
