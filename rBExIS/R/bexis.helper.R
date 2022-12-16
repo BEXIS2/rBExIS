@@ -54,7 +54,7 @@ exists_authorization_basic <- function() {
   .bexis.env$.bexis.options = list(
     base_url = NA,
     download_directory = "downloads",
-    authorization_token = NA
+    authorization_token = NA,
     authorization_basic = NA
   )
 }
