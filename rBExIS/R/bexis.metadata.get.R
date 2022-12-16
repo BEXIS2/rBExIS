@@ -29,11 +29,12 @@ bexis.get.metadata <- function()
   }
   
   names(response)
-  status_code(response)
-  
-  data <- content(response)
-  
-  print(data)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
 }
 
 #' Getting metadata from BExIS
@@ -54,19 +55,24 @@ bexis.get.metadata <- function()
 #'       }
 #' @export bexis.get.metadata_by
 
-bexis.get.metadata_by <- function(id, base_url = bexis.options("base_url"), token = bexis.options("token")) {
-  function_requires_base_url()
+bexis.get.metadata <- function(id) 
+{
+  api_url <- paste0(get_api_url("/metadata"), "/", id)
   
-  url = paste0(get_download_url("base_url"),"Metadata/", id);
-  
-  # get metadata
-  response <- GET(url, add_headers(`Authorization` = sprintf("bearer %s", token)))
+  if(exists_option("authorization_bearer"))
+  {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
+  } else if(exists_option("authorization_basic")) {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", bexis.options("authorization_basic"))), content_type("application/octet-stream"), accept("*/*"))
+  } else {
+    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
+  }
   
   names(response)
-  status_code(response)
-  
-  data <- content(response)
-  
-  print(data)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
 
+  print(content(response))
 }
