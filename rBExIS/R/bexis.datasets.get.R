@@ -15,10 +15,11 @@
 #'       }
 #' @export bexis.get.datasets
 
-bexis.get.datasets <- function(base_url = bexis.options("base_url"), token = bexis.options("token")) {
-  function_requires_base_url()
+bexis.get.datasets <- function(base_url = bexis.options("base_url"), token = bexis.options("token")) 
+{
+  api_url <- get_api_url("data/")
 
-  response <- GET(paste0(get_download_url("base_url"),"Data/"), add_headers(`Authorization` = sprintf("bearer %s", token)))
+  response <- GET(api_url, add_headers(`Authorization` = sprintf("bearer %s", token)))
   
   names(response)
   status_code(response)
