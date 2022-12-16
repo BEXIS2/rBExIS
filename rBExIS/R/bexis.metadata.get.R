@@ -11,9 +11,9 @@
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         bexis.get.metadatas()
+#'         bexis.get.metadata()
 #'       }
-#' @export bexis.get.metadatas
+#' @export bexis.get.metadata
 
 bexis.get.metadata <- function() 
 {
@@ -51,9 +51,9 @@ bexis.get.metadata <- function()
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         bexis.get.metadata_by(id=8)
+#'         bexis.get.metadata(id=8)
 #'       }
-#' @export bexis.get.metadata_by
+#' @export bexis.get.metadata
 
 bexis.get.metadata <- function(id) 
 {
