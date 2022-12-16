@@ -5,7 +5,7 @@
 # url related helpers
 get_api_url <- function(suffix = '') 
 {
-  if(!(exists_base_url())) {
+  if(!(exists_option("base_url"))) {
     stop("Please set \"base_url\" within the options by bexis.options(\"base_url\" = \"YOUR.BASE.URL\").")
   } 
 
@@ -17,31 +17,18 @@ get_api_url <- function(suffix = '')
   }
 }
 
-exists_base_url <- function() {
-	if(is.na(bexis.options("base_url")) || bexis.options("base_url") == '')
-	{
-		return(FALSE)
-	} else {
-		return(TRUE)
-	}
-}
+exists_option <- function(key) {
+	
+  if(!(exists(bexis.options(key))))
+    return(FALSE)
 
-exists_authorization_bearer <- function() {
-	if(is.na(bexis.options("authorization_bearer")) || bexis.options("authorization_bearer") == '')
-	{
-		return(FALSE)
-	} else {
-		return(TRUE)
-	}
-}
+  if(is.na(bexis.options(key)) )
+    return(FALSE)
 
-exists_authorization_basic <- function() {
-	if(is.na(bexis.options("authorization_basic")) || bexis.options("authorization_basic") == '')
-	{
-		return(FALSE)
-	} else {
-		return(TRUE)
-	}
+  if(bexis.options(key) == '')
+    return(FALSE)
+
+  return(TRUE)
 }
 
 .onLoad <- function(lib, pkg) {
@@ -54,7 +41,7 @@ exists_authorization_basic <- function() {
   .bexis.env$.bexis.options = list(
     base_url = NA,
     download_directory = "downloads",
-    authorization_token = NA,
+    authorization_bearer = NA,
     authorization_basic = NA
   )
 }

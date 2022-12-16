@@ -19,10 +19,10 @@ bexis.get.metadata <- function()
 {
   api_url <- get_api_url("metadata/")
   
-  if(exists_authorization_bearer())
+  if(exists_option("authorization_bearer"))
   {
     response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options(authorization_bearer)), content_type("application/octet-stream"), accept("*/*")))
-  } else if(exists_authorization_basic()) {
+  } else if(exists_option("authorization_basic")) {
     response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", bexis.options(authorization_basic)), content_type("application/octet-stream"), accept("*/*")))
   } else {
     response <- VERB("GET", api_url, add_headers(content_type("application/octet-stream"), accept("*/*")))
