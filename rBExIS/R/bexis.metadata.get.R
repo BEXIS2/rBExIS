@@ -6,11 +6,11 @@
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         GetMetadata()
+#'         bexis.GetMetadata()
 #'       }
-#' @export GetMetadata
+#' @export bexis.GetMetadata
 
-GetMetadata <- function() 
+bexis.GetMetadata <- function() 
 {
   api_url <- get_api_url("/metadata")
   
@@ -41,11 +41,11 @@ GetMetadata <- function()
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         GetMetadataById(id=8)
+#'         bexis.GetMetadataById(8)
 #'       }
-#' @export GetMetadataById
+#' @export bexis.GetMetadataById
 
-GetMetadataById <- function(id) 
+bexis.GetMetadataById <- function(id) 
 {
   api_url <- paste0(get_api_url("/metadata"), "/", id)
   
