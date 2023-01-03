@@ -39,7 +39,7 @@ get_auth_header <- function() {
 
   if(exists_option("authorization_basic"))
   {
-    return(sprintf("Basic %s", bexis.options("authorization_basic")))
+    return(sprintf("Basic %s", base64(bexis.options("authorization_basic"))))
   }
 
   return(NA);
