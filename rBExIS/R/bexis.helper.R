@@ -31,6 +31,20 @@ exists_option <- function(key) {
   return(TRUE)
 }
 
+get_auth_header <- function() {
+  if(exists_option("authorization_bearer"))
+  {
+    return(sprintf("Bearer %s", bexis.options("authorization_bearer")))
+  }
+
+  if(exists_option("authorization_basic"))
+  {
+    return(sprintf("Basic %s", bexis.options("authorization_basic")))
+  }
+
+  return(NA);
+}
+
 .onLoad <- function(lib, pkg) {
 
   library(devtools)
