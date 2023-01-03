@@ -51,6 +51,7 @@ get_auth_header <- function() {
   library(httr)
   library(jsonlite)
   library(XML)
+  library(rBExIS)
 
   .bexis.env$.bexis.options = list(
     base_url = NA,
