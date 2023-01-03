@@ -14,6 +14,9 @@ library(XML)
 install.packages("jsonlite")
 library(jsonlite)
 
+install.packages("base64enc")
+library(base64enc)
+
 install_github("BEXIS2/rBExIS", subdir = "rBExIS")
 library(rBExIS)
 
