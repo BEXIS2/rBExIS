@@ -50,7 +50,7 @@ GetMetadataById <- function(id)
   api_url <- paste0(get_api_url("/metadata"), "/", id)
   
   if(get_auth_header() == NA){
-    response <- VERB("GET", api_url, add_headers(content_type("application/octet-stream"), accept("*/*"))
+    response <- VERB("GET", api_url, add_headers(content_type("application/octet-stream"), accept("*/*")))
   }
   else{
     response <- VERB("GET", api_url, add_headers(Authorization = get_auth_header()), content_type("application/octet-stream"), accept("*/*"))
