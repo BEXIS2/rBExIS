@@ -47,10 +47,19 @@ get_auth_header <- function() {
 
 .onLoad <- function(lib, pkg) {
 
+  install.packages("devtools")
   library(devtools)
+  
+  install.packages("httr")
   library(httr)
-  library(jsonlite)
+  
+  install.packages("XML")
   library(XML)
+  
+  install.packages("jsonlite")
+  library(jsonlite)
+  
+  install.packages("base64enc")
   library(base64enc)
 
   .bexis.env$.bexis.options = list(
