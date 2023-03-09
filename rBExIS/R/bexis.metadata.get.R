@@ -49,14 +49,15 @@ bexis.GetMetadataById <- function(id)
 {
   api_url <- paste0(get_api_url("/metadata"), "/", id)
   
-  if(is.na(get_auth_header())){
-    response <- VERB("GET", api_url, add_headers(content_type("application/octet-stream"), accept("*/*")))
+  if(exists_option("authorization_bearer"))
+  {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
+  } else if(exists_option("authorization_basic")) {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", base64encode(charToRaw(bexis.options("authorization_basic"))))), content_type("application/octet-stream"), accept("*/*"))
+  } else {
+    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
   }
-  else{
-    response <- VERB("GET", api_url, add_headers(Authorization = get_auth_header()), content_type("application/octet-stream"), accept("*/*"))
-  }
-  
-  
+   
   names(response)
   if(status_code(response) != 200)
   {
