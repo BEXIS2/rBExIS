@@ -9,9 +9,9 @@
 #'       }
 #' @export bexis.GetDatasetIds
 
-bexis.GetDatasetIds <- function(id) 
+bexis.GetDatasetIds <- function() 
 {
-  api_url <- paste0(get_api_url("/data"), "/", id)
+  api_url <- paste0(get_api_url("/data"), "/")
   
   response <- get_response("GET", api_url)
    

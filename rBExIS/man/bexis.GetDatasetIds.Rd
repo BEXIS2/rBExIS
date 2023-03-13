@@ -4,7 +4,7 @@
 \alias{bexis.GetDatasetIds}
 \title{Getting a single metadata structure from BExIS}
 \usage{
-bexis.GetDatasetIds(id)
+bexis.GetDatasetIds()
 }
 \description{
 The function provides access to data that on a BExIS II instance.
