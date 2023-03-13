@@ -68,6 +68,17 @@ bexis.GetMetadataById <- function(id)
 }
 
 
+#' Getting metadata structures from BExIS
+#'
+#' The function provides access to data that on a BExIS II instance.
+#' @return The function returns a metadata of the requested dataset.
+#' An error is provided in case the data is not found or if you don't
+#' have the rights to access it.
+#'
+#' @examples \dontrun{
+#'         bexis.GetMetadataStructures()
+#'       }
+#' @export bexis.GetMetadataStructures
 bexis.GetMetadataStructures <- function() {
   api_url <- paste0(get_api_url("/structures"), "/")
 
