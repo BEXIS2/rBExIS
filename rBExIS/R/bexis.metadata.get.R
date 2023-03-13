@@ -66,3 +66,17 @@ bexis.GetMetadataById <- function(id)
 
   print(content(response))
 }
+
+
+bexis.GetMetadataStructures <- function() {
+  api_url <- paste0(get_api_url("/structures"), "/")
+
+  response <- get_response("GET", api_url)
+  
+  names(response)
+  status_code(response)
+  
+  data <- content(response)
+  
+  print(data)
+}

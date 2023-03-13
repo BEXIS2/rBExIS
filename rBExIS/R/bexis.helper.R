@@ -45,6 +45,21 @@ get_auth_header <- function() {
   return(NA);
 }
 
+get_response <- function(method, api_url) {
+  
+  auth_header <- get_auth_header()
+
+  if(is.na(auth_header))
+  {
+    return(VERB(method, api_url, content_type("application/octet-stream"), accept("*/*")))
+  }
+  else
+  {
+    return(VERB(method, api_url, add_headers(Authorization = auth_header), content_type("application/octet-stream"), accept("*/*")))
+  }
+}
+
+
 .onLoad <- function(lib, pkg) {
 
   #define packages to install
