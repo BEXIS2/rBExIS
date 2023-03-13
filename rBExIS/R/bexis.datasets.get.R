@@ -1,3 +1,57 @@
+#' Getting a single metadata structure from BExIS
+#'
+#' The function provides access to data that on a BExIS II instance.
+#' An error is provided in case the data is not found or if you don't
+#' have the rights to access it.
+#'
+#' @examples \dontrun{
+#'         bexis.GetDatasetIds()
+#'       }
+#' @export bexis.GetDatasetIds
+
+bexis.GetDatasetIds <- function() 
+{
+  api_url <- paste0(get_api_url("/data"), "/")
+  
+  response <- get_response("GET", api_url)
+   
+  names(response)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
+}
+
+#' Getting a single dataset from BExIS
+#'
+#' The function provides access to data that on a BExIS II instance.
+#' @param id Is the ID of the metadata structure you want to access
+#' @return The function returns a metadata of the requested dataset.
+#' An error is provided in case the data is not found or if you don't
+#' have the rights to access it.
+#'
+#' @examples \dontrun{
+#'         bexis.GetDatasetById(8)
+#'       }
+#' @export bexis.GetDatasetById
+
+bexis.GetDatasetById <- function(id) 
+{
+  api_url <- paste0(get_api_url("/data"), "/", id)
+  
+  response <- get_response("GET", api_url)
+   
+  names(response)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
+}
+
 #' Getting all dataset ids from BExIS
 #'
 #' The function provides access to data that on a BExIS II instance.
@@ -15,18 +69,28 @@
 #'       }
 #' @export bexis.get.datasets
 
-bexis.get.datasets <- function(base_url = bexis.options("base_url"), token = bexis.options("token")) {
-  function_requires_base_url()
-
-  response <- GET(paste0(get_download_url("base_url"),"Data/"), add_headers(`Authorization` = sprintf("bearer %s", token)))
+bexis.get.datasets <- function() 
+{
+  api_url <- get_api_url("/data")
+  
+  if(exists_option("authorization_bearer"))
+  {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
+  } else if(exists_option("authorization_basic")) {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", bexis.options("authorization_basic"))), content_type("application/octet-stream"), accept("*/*"))
+  } else {
+    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
+  }
   
   names(response)
   status_code(response)
   
-  data <- content(response)
-  
-  print(data)
-  
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
 }
 
 
@@ -148,13 +212,19 @@ bexis.get.metadata_by <- function(id, base_url = bexis.options("base_url"), toke
 #'       }
 #' @export bexis.get.structures
 
-bexis.get.structures <- function(base_url = bexis.options("base_url"), token = bexis.options("token")) {
-  function_requires_base_url()
-  
-  url = paste0(get_download_url("base_url"),"Structures/");
-  
-  # get metadata
-  response <- GET(url, add_headers(`Authorization` = sprintf("bearer %s", token)))
+bexis.get.structures <- function() {
+  api_url <- paste0(get_api_url("/structures"), "/")
+
+  get_response(api_url, "GET", )
+
+  if(exists_option("authorization_bearer"))
+  {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
+  } else if(exists_option("authorization_basic")) {
+    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", base64encode(charToRaw(bexis.options("authorization_basic"))))), content_type("application/octet-stream"), accept("*/*"))
+  } else {
+    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
+  }
   
   names(response)
   status_code(response)
