@@ -63,7 +63,7 @@ get_response <- function(method, api_url) {
 .onLoad <- function(lib, pkg) {
 
   #define packages to install
-  packages <- c('httr', 'XML', 'jsonlite', 'base64enc')
+  packages <- c('httr', 'XML', 'jsonlite', 'base64enc', 'readr')
 
   #install all packages that are not already installed
   install.packages(setdiff(packages, rownames(installed.packages())))
