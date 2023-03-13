@@ -4,10 +4,7 @@
 \alias{bexis.get.structures}
 \title{Getting all structures from BExIS}
 \usage{
-bexis.get.structures(
-  base_url = bexis.options("base_url"),
-  token = bexis.options("token")
-)
+bexis.get.structures()
 }
 \arguments{
 \item{base_url}{Is the URL of the BExIS instance (e.g. www.mybexis.de)
