@@ -14,14 +14,7 @@ bexis.GetMetadata <- function()
 {
   api_url <- get_api_url("/metadata")
   
-  if(exists_option("authorization_bearer"))
-  {
-    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
-  } else if(exists_option("authorization_basic")) {
-    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", base64encode(charToRaw(bexis.options("authorization_basic"))))), content_type("application/octet-stream"), accept("*/*"))
-  } else {
-    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
-  }
+  response <- get_response("GET", api_url)
   
   names(response)
   if(status_code(response) != 200)
@@ -49,14 +42,7 @@ bexis.GetMetadataById <- function(id)
 {
   api_url <- paste0(get_api_url("/metadata"), "/", id)
   
-  if(exists_option("authorization_bearer"))
-  {
-    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Bearer %s", bexis.options("authorization_bearer"))), content_type("application/octet-stream"), accept("*/*"))
-  } else if(exists_option("authorization_basic")) {
-    response <- VERB("GET", api_url, add_headers(Authorization = sprintf("Basic %s", base64encode(charToRaw(bexis.options("authorization_basic"))))), content_type("application/octet-stream"), accept("*/*"))
-  } else {
-    response <- VERB("GET", api_url, content_type("application/octet-stream"), accept("*/*"))
-  }
+  response <- get_response("GET", api_url)
    
   names(response)
   if(status_code(response) != 200)
@@ -90,4 +76,32 @@ bexis.GetMetadataStructures <- function() {
   data <- content(response)
   
   print(data)
+}
+
+#' Getting a single metadata structure from BExIS
+#'
+#' The function provides access to data that on a BExIS II instance.
+#' @param id Is the ID of the metadata structure you want to access
+#' @return The function returns a metadata of the requested dataset.
+#' An error is provided in case the data is not found or if you don't
+#' have the rights to access it.
+#'
+#' @examples \dontrun{
+#'         bexis.GetMetadataStructureById(8)
+#'       }
+#' @export bexis.GetMetadataStructureById
+
+bexis.GetMetadataStructureById <- function(id) 
+{
+  api_url <- paste0(get_api_url("/structures"), "/", id)
+  
+  response <- get_response("GET", api_url)
+   
+  names(response)
+  if(status_code(response) != 200)
+  {
+    print(status_code(response))
+  }
+
+  print(content(response))
 }
