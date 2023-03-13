@@ -54,7 +54,7 @@ bexis.GetMetadataById <- function(id)
 }
 
 
-#' Getting metadata structures from BExIS
+#' Getting data structures from BExIS
 #'
 #' The function provides access to data that on a BExIS II instance.
 #' @return The function returns a metadata of the requested dataset.
@@ -62,10 +62,10 @@ bexis.GetMetadataById <- function(id)
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         bexis.GetMetadataStructures()
+#'         bexis.GetDataStructures()
 #'       }
-#' @export bexis.GetMetadataStructures
-bexis.GetMetadataStructures <- function() {
+#' @export bexis.GetDataStructures
+bexis.GetDataStructures <- function() {
   api_url <- paste0(get_api_url("/structures"), "/")
 
   response <- get_response("GET", api_url)
@@ -78,20 +78,20 @@ bexis.GetMetadataStructures <- function() {
   print(data)
 }
 
-#' Getting a single metadata structure from BExIS
+#' Getting a single data structure from BExIS
 #'
 #' The function provides access to data that on a BExIS II instance.
-#' @param id Is the ID of the metadata structure you want to access
+#' @param id Is the ID of the data structure you want to access
 #' @return The function returns a metadata of the requested dataset.
 #' An error is provided in case the data is not found or if you don't
 #' have the rights to access it.
 #'
 #' @examples \dontrun{
-#'         bexis.GetMetadataStructureById(8)
+#'         bexis.GetDataStructureById(8)
 #'       }
-#' @export bexis.GetMetadataStructureById
+#' @export bexis.GetDataStructureById
 
-bexis.GetMetadataStructureById <- function(id) 
+bexis.GetDataStructureById <- function(id) 
 {
   api_url <- paste0(get_api_url("/structures"), "/", id)
   
