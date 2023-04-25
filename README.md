@@ -57,13 +57,13 @@ bexis.options("base_url" = "https://demo.bexis2.uni-jena.de/")
 Within BEXIS2, the functions are either publically available (i.e. no authentication/authorization is needed to execute the function). On the other side, other functions may need authentication to verify the user of that function. For this reason, you have two different opportunities within rBExIS. Either go with the token from your account (Bearer), or use the username and password instead (Basic). The first example uses basic authentication with administrator (username) and administrator (password). Please be aware of the ":" (colon) in between.
 
 ```r
-bexis.options("authentication_basic" = "administrator:administrator")
+bexis.options("authorization_basic" = "administrator:administrator")
 ```
 
 The second example is equivalent in the sense of the user and rights. But instead of basic authentication, it uses the bearer token for authentication.
 
 ```r
-bexis.options("authentication_bearer" = "KJkSKJxEoiXwk9ipAvKkNEJ9isGGi64drtQDRf9KKCDRKSE5JYvz5j8Yx5Unvto5")
+bexis.options("authorization_bearer" = "KJkSKJxEoiXwk9ipAvKkNEJ9isGGi64drtQDRf9KKCDRKSE5JYvz5j8Yx5Unvto5")
 ```
 
 So, in general there is no difference in which method you could/should use. If you know your token, you might go with it. But instead of yourself into the system and retrieve the token, you can also use your username and password directly.
