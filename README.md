@@ -4,7 +4,7 @@ A package to exchange data and metadata in RStudio and BEXIS2 instances.
 
 ## Requirements
 
-- R (e.g. https://cran.r-project.org/bin/windows/base/ for Windows, otherwise start [here](https://cran.r-project.org/bin/))
+- R (v<4.3) (e.g. https://cran.r-project.org/bin/windows/base/ for Windows, otherwise start [here](https://cran.r-project.org/bin/))
 - RStudio (https://www.rstudio.com/products/rstudio/download/#download)
 - Rtools (e.g. https://cran.r-project.org/bin/windows/Rtools/ for Windows, , otherwise start [here](https://cran.r-project.org/bin/))
 
